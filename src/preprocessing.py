@@ -87,3 +87,12 @@ def cleanMovies(df):
     df = df.sort_values(by="Weighted_Rating", ascending=False).reset_index(drop=True)
 
     return df
+
+
+def loadAndCleanData(filepath):
+    df_raw = pd.read_csv(filepath)
+    basicEda(df_raw)
+    df_clean = cleanMovies(df_raw)
+    basicEda(df_clean)
+    df_clean.to_csv('../data/cleaned_movies.csv', index=False)
+    return df_clean
